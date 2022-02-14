@@ -1,0 +1,31 @@
+version: '3.9'
+
+networks:
+  serverless-localstack-plugin-example:
+    name: serverless-localstack-plugin-example-network
+volumes:
+  aws-data:
+
+services:
+  aws:
+    container_name: serverless-localstack-plugin-example-aws
+    image: localstack/localstack-light:0.14.0
+    ports:
+      - 4566:4566
+    environment:
+      - SERVICES=acm,apigateway,cloudformation,cloudwatch,config,dynamodb,dynamodbstreams,ec2,es,events,firehose,iam,kinesis,kms,lambda,logs,opensearch,redshift,resource-groups,resourcegroupstaggingapi,route53,route53resolver,s3,secretsmanager,ses,sns,sqs,ssm,stepfunctions,sts,support,swf
+      - EDGE_PORT=4566
+      - DATA_DIR=/tmp/localstack/data
+      - DISABLE_CORS_CHECKS=true
+      - LAMBDA_EXECUTOR=local
+      - LAMBDA_REMOTE_DOCKER=false
+      - LAMBDA_MOUNT_CWD=/tmp/localstack/data/lambda
+    volumes:
+      - type: bind
+        source: $PWD
+        target: /tmp/localstack/data/lambda
+    #   - type: volume
+    #     source: aws-data
+    #     target: /tmp/localstack/data
+    networks:
+      - serverless-localstack-plugin-example

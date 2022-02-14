@@ -1,0 +1,28 @@
+{
+  "name": "serverless-localstack-plugin-example",
+  "version": "1.0.0",
+  "description": "Serverless webpack example using ecma script",
+  "scripts": {
+    "build:dev": "sls webpack --stage local",
+    "watch:dev": "nodemon -w ./first.js -e .js -x 'npm run build:dev'",
+    "start:dev:offline": "sls offline start --stage local",
+    "start:dev": "npm run deploy:dev && npm run watch:dev",
+    "deploy:dev": "sls deploy --stage local --verbose",
+    "deploy:prod": "sls deploy --stage prod --verbose"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.11.1",
+    "@babel/preset-env": "^7.11.0",
+    "babel-loader": "^8.1.0",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-polyfill": "^6.23.0",
+    "babel-preset-env": "^1.6.0",
+    "nodemon": "^2.0.15",
+    "serverless": "^3.2.1",
+    "serverless-localstack": "^0.4.35",
+    "serverless-webpack": "^5.3.1",
+    "webpack": "^4.35.2"
+  },
+  "author": "The serverless webpack authors (https://github.com/elastic-coders/serverless-webpack)",
+  "license": "MIT"
+}
