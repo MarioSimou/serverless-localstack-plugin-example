@@ -14,14 +14,9 @@ custom:
   localstack:
     stages:
       - local
-    host: http://localhost
-    edgePort: 4566
-    autoStart: true
     debug: true
     lambda:
       mountCode: true
-    docker:
-      sudo: false
 
 provider:
   name: aws
