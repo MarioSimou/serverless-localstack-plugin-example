@@ -7,7 +7,7 @@
     "watch:dev": "nodemon -w ./first.js -e .js -x 'npm run build:dev'",
     "start:dev:offline": "sls offline start --stage local",
     "start:dev": "npm run deploy:dev && npm run watch:dev",
-    "deploy:dev": "sls deploy --stage local --verbose",
+    "deploy:dev": "LAMBDA_MOUNT_CWD=$PWD sls deploy --stage local --verbose",
     "deploy:prod": "sls deploy --stage prod --verbose"
   },
   "devDependencies": {
